@@ -13,6 +13,8 @@ Outra possibilidade testada foi converter a URL inicial para um INT32 e converti
 Inicialmente desenvolvido em PHP, foi migrado para Node.js para facilitar o processo de deployment. 
 Tanto a GUI quanto a API foram publicados na plataforma Render e a database foi publicada na plataforma Clever Cloud.
 
+- Repositório da GUI:
+https://github.com/ItaloCasas/url-shortener-frontend-js/
 - API:
 https://shortyapi.onrender.com
 - GUI:
