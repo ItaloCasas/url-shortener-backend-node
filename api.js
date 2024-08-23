@@ -39,8 +39,13 @@ app.get('/:url', (req, res) => {
     try {
         let url = new Url();
         url.getByShort(req.params.url, function (obj) {
-            console.log("redirecting to "+req.params.url);
-            res.redirect(obj[0].full_url);
+            let redUrl = obj[0].full_url;
+            let pattern = new RegExp('^(https?|ftp)://');
+            if (!pattern.test(redUrl)) {
+                redUrl = "http://" + redUrl;
+            }
+            console.log(redUrl);
+            res.status(301).redirect(redUrl);
         });
     } catch (e) {
         console.log(e);
@@ -49,6 +54,7 @@ app.get('/:url', (req, res) => {
 });
 
 // ADD
+//  MYSQL AUTO_INCREMENT ON BASE 64
 app.post('/add', (req, res) => {
     console.log('/add');
     try {
