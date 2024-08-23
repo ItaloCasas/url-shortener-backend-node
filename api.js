@@ -54,7 +54,6 @@ app.get('/:url', (req, res) => {
 });
 
 // ADD
-//  MYSQL AUTO_INCREMENT ON BASE 64
 app.post('/add', (req, res) => {
     console.log('/add');
     try {
