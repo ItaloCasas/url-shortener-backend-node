@@ -18,7 +18,7 @@ app.listen(port, () => console.log('listening port: ' + port));
 
 // GET ALL
 app.get('/getAll', (req, res) => {
-    console.log({request: '/getAll'});
+    console.log({ request: '/getAll' });
     try {
         let url = new Url();
         url.getAll(function (obj) {
@@ -33,18 +33,22 @@ app.get('/getAll', (req, res) => {
 });
 
 // GOTO
-app.get('/:url', (req, res) => {
-    console.log({request: '/'+req.params.url});
-    
+app.get('/goto/:url', (req, res) => {
+    console.log({ request: '/goto/' + req.params.url });
+
     try {
         let url = new Url();
         url.getByShort(req.params.url, function (obj) {
-            let redUrl = obj[0].full_url;
-            let pattern = new RegExp('^(https?|ftp)://');
-            if (!pattern.test(redUrl)) {
-                redUrl = "http://" + redUrl;
+            if (obj && obj[0] && obj[0].full_url) {
+                let redUrl = obj[0].full_url;
+                let pattern = new RegExp('^(https?|ftp)://');
+                if (!pattern.test(redUrl)) {
+                    redUrl = "http://" + redUrl;
+                }
+                res.status(301).redirect(redUrl);
+            } else {
+                res.status(500).send("Falha ao carregar URL");
             }
-            res.status(301).redirect(redUrl);
         });
     } catch (e) {
         console.log(e);
@@ -54,7 +58,7 @@ app.get('/:url', (req, res) => {
 
 // ADD
 app.post('/add', (req, res) => {
-    console.log({request: '/add', body: req.body.full_url});
+    console.log({ request: '/add', body: req.body.full_url });
     try {
         let url = new Url();
         url.add(req.body.full_url, function (obj) {
