@@ -18,11 +18,10 @@ app.listen(port, () => console.log('listening port: ' + port));
 
 // GET ALL
 app.get('/getAll', (req, res) => {
-    console.log('/getAll');
+    console.log({request: '/getAll'});
     try {
         let url = new Url();
         url.getAll(function (obj) {
-            console.log(obj);
             return !obj ?
                 res.status(500).send("Falha ao carregar lista de URLs") :
                 res.status(200).send(obj);
@@ -35,7 +34,8 @@ app.get('/getAll', (req, res) => {
 
 // GOTO
 app.get('/:url', (req, res) => {
-    console.log('/:url');
+    console.log({request: '/'+req.params.url});
+    
     try {
         let url = new Url();
         url.getByShort(req.params.url, function (obj) {
@@ -44,7 +44,6 @@ app.get('/:url', (req, res) => {
             if (!pattern.test(redUrl)) {
                 redUrl = "http://" + redUrl;
             }
-            console.log(redUrl);
             res.status(301).redirect(redUrl);
         });
     } catch (e) {
@@ -55,7 +54,7 @@ app.get('/:url', (req, res) => {
 
 // ADD
 app.post('/add', (req, res) => {
-    console.log('/add');
+    console.log({request: '/add', body: req.body.full_url});
     try {
         let url = new Url();
         url.add(req.body.full_url, function (obj) {
