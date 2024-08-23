@@ -1,8 +1,10 @@
 Sobre o projeto:
 
 É uma API simples para encurtamento de URLs, funciona através da conversão do índice do registro na base de dados para um charset em base 62.
+
 As URLs curtas são geradas de forma sequencial devido ao seu método de criação, indo de 00000000 à ZZZZZZZZ.
-A chave foi delimitada a 8 caracteres para manter uma padronização estética na URL, pode ser expandida ou reduzida facilmente caso necessário.
+
+O hash foi delimitado a 8 caracteres para manter uma padronização estética na URL, pode ser expandida ou reduzida facilmente caso necessário.
 Mantendo a restrição de 8 caracteres, permite um total armazenado de 218.340.105.584.896 URLs diferentes.
 
 Foi estudado a ideia de aplicar um hash SHA-256 porém como o objetivo final é encurtar a URL, não faz sentido devido ao tamanho da hash.
