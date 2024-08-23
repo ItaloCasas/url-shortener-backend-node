@@ -5,7 +5,7 @@ Sobre o projeto:
 As URLs curtas são geradas de forma sequencial devido ao seu método de criação, indo de 00000000 à ZZZZZZZZ.
 
 O hash foi delimitado a 8 caracteres para manter uma padronização estética na URL, pode ser expandida ou reduzida facilmente caso necessário.
-Mantendo a restrição de 8 caracteres, permite um total armazenado de 218.340.105.584.896 URLs diferentes.
+Mantendo esta restrição, permite um total armazenado de 218.340.105.584.896 URLs diferentes.
 
 Foi estudado a ideia de aplicar um hash SHA-256 porém como o objetivo final é encurtar a URL, não faz sentido devido ao tamanho da hash.
 Outra possibilidade testada foi converter a URL inicial para um INT32 e convertido esse valor para base 62, porém o potencial excesso de validações e consultas no banco para garantir a integridade hash se mostrou indeficiente.
