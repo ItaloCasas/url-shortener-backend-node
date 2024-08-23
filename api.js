@@ -33,8 +33,8 @@ app.get('/getAll', (req, res) => {
 });
 
 // GOTO
-app.get('/goto/:url', (req, res) => {
-    console.log({ request: '/goto/' + req.params.url });
+app.get('/:url', (req, res) => {
+    console.log({ request: '/' + req.params.url });
 
     try {
         let url = new Url();
@@ -62,9 +62,10 @@ app.post('/add', (req, res) => {
     try {
         let url = new Url();
         url.add(req.body.full_url, function (obj) {
-            return !obj || !obj.affectedRows ?
+            console.log(obj)
+            return !obj || !obj.short_url ?
                 res.status(500).send("Falha ao adicionar URL") :
-                res.status(200).send(obj);
+                res.status(200).send({url: req.protocol + "://" + req.headers.host + "/" + obj.short_url});
         });
 
     } catch (e) {
