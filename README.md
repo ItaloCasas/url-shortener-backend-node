@@ -37,27 +37,4 @@ Endpoints da API:
   - Método: GET
   - Funcionalidade: recebe o hash valida na base de dados e redireciona para a URL armazenada.
  
-Para executar a API localmente é necessário o NPM instalado e adicionar o arquivo /modules/conSettings.js contendo a seguinte classe, alterando os dados de conexão:
-```
-class ConSettings {
-    constructor () {
-        this.host = '';
-        this.user = '';
-        this.password = '';
-        this.database = '';
-
-        return this;
-    }
-
-    getSettings() {
-        return {
-            host: this.host,
-            user: this.user,
-            password: this.password,
-            database: this.database
-        };
-    }
-}
-module.exports = ConSettings; 
-```
-Após isso, executer `npm install` para instalar as dependencias do projeto e `node --watch api.js` para executar a API.
+Para executar a API localmente basta clonar o projeto e executar `npm install` para instalar as dependencias do projeto e `node --watch api.js` para executar a API.
